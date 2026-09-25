@@ -36,4 +36,4 @@ function Roadmap({ career }) { const [open, setOpen] = useState(null); return <P
 function AppRoutes() { return <Routes><Route path="/" element={<Home />} /><Route path="/careers" element={<Careers />} /><Route path="/careers/:slug/roadmap" element={<RoadmapRoute />} /><Route path="/careers/:slug" element={<CareerRoute />} /><Route path="*" element={<Home />} /></Routes>; }
 function CareerRoute() { const { slug } = useParams(); const career = careers.find(c => c.slug === slug); return career ? <Detail career={career} /> : <Careers />; }
 function RoadmapRoute() { const { slug } = useParams(); const career = careers.find(c => c.slug === slug); return career ? <Roadmap career={career} /> : <Careers />; }
-export default function App() { useEffect(() => window.scrollTo(0, 0), []); return <BrowserRouter><AppRoutes /></BrowserRouter>; }
+export default function App() { useEffect(() => { window.scrollTo(0, 0); }, []); return <BrowserRouter><AppRoutes /></BrowserRouter>; }
