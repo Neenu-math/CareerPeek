@@ -1,0 +1,39 @@
+{
+  "app_name": "CareerPeek",
+  "archetype": "Pastel & Soft (Approachability, Ease, Gen Z) with Duolingo cheerful learning inspiration",
+  "typography": {
+    "heading_font": "Plus Jakarta Sans, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "weights": ["400", "500", "600", "700", "800"]
+  },
+  "colors": {
+    "primary": "#4F46E5",
+    "primary_light": "#EEF2FF",
+    "secondary": "#06B6D4",
+    "background": "#F8FAFC",
+    "surface": "#FFFFFF",
+    "text_dark": "#0F172A",
+    "text_muted": "#64748B",
+    "accent_green": "#10B981",
+    "accent_yellow": "#F59E0B",
+    "border_color": "#E2E8F0"
+  },
+  "visual_enhancers": {
+    "border_radius": "1rem",
+    "shadows": "0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)",
+    "glassmorphism": "backdrop-blur-md bg-white/80 border border-white/20"
+  },
+  "layouts": {
+    "container_max": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+  },
+  "image_urls": {
+    "hero_illustration": "https://images.unsplash.com/photo-1756118175438-4e732b6aa719?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "nurse": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "software_developer": "https://images.unsplash.com/photo-1756118175438-4e732b6aa719?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "doctor": "https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "chartered_accountant": "https://images.unsplash.com/photo-1659080907293-81a2357a77d7?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "entrepreneur": "https://images.unsplash.com/photo-1659356874911-37485397391e?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "instructions_to_main_agent": "Build CareerPeek as a responsive React single-page app (or multi-view app with clean client-side routing) with landing page, searchable careers directory (/careers), career detail pages (/career/:slug), and interactive roadmap pages with expandable milestones. Ensure robust test data-testid attributes, cheerful Duolingo-inspired friendly UI, LinkedIn search links opening in new tabs, and exact slugs: nurse, software-developer, doctor, chartered-accountant, entrepreneur."
+}

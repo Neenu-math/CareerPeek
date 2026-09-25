@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --ink: #16243d; --muted: #687895; --blue: #6ca9e8; --blue-dark: #3c7fc8; --paper: #fffdf8; --cream: #f6f1e9; --line: #dbe2ec; --mint: #ccefe5; --coral: #f8b5a8; --gold: #f8da8b; --violet: #dcd6f6; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; } button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
