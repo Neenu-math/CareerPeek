@@ -1,0 +1,35 @@
+{
+  "scope": "Focused main-agent browser verification of the two remaining iteration_6 findings",
+  "date": "2026-09-27",
+  "status": "passed",
+  "confirmed_remaining_defects": [],
+  "desktop_mouse_drag": {
+    "result": "passed",
+    "method": "Real page.mouse down/move/up events over 20 moves, with current element coordinates and a source hit-test after scrolling; no HTML drag-event simulation or state seeding.",
+    "checks": [
+      "Allocate five tokens to solve, remove one, physically drag bank token 4 to create: create count becomes 1.",
+      "Physically drag token 4 from create to team: create becomes 0 and team becomes 1.",
+      "Physically drag token 4 from team to bank: team becomes 0 and token reappears in bank."
+    ],
+    "resolution": "The reported desktop drag failure was not reproduced with visible source hit-testing and coordinates recomputed after scrolling. No additional app modification was needed for these cases."
+  },
+  "tradeoff_resume": {
+    "result": "passed",
+    "checks": [
+      "After selecting pair 3, storage immediately contains tradeoffIndex=2 and answers=['deep','new','unexpected',null].",
+      "Reload stays on Little choice 3 of 4 with unexpected aria-pressed=true: both the current checkpoint and answer are preserved.",
+      "Click Next choice, then reload: Little choice 4 of 4 is preserved."
+    ],
+    "resolution": "Iteration_6 expected automatic advancement on reload after merely selecting an answer. That expectation is incorrect for the explicit Next choice flow. Selection saves the answer; Next choice changes the checkpoint. Advancing automatically on reload would silently skip a user's review state."
+  },
+  "overflow": { "viewport": "1920x800", "offenders": [] },
+  "browser_console_artifact": "/root/.emergent/automation_output/20260927_125641/console_20260927_125641.log",
+  "preceding_verification": {
+    "source": "/root/.emergent/automation_output/20260927_124504/console_20260927_124504.log",
+    "passed": ["Normal plus allocation", "Rapid same-tick five-token allocation and removal", "Direct activity-card tap allocation", "Continue advances to stage 2", "Actual CDP touch drag on Nurse at 390x844", "No horizontal overflow on desktop or mobile"]
+  },
+  "broader_regression": "iteration_6 records full six-step completion for Software Developer and Nurse on desktop and mobile, touch slider tests, all-five career content/navigation/configuration checks, and persistence/invalid-session/results-route checks. This verification resolves its two remaining reported findings.",
+  "intentional_unavailable_flow": "See My Results is disabled by explicit user choice. Generated results are not available, and old results URLs redirect to the assessment.",
+  "final_build": "yarn build passed after all code changes",
+  "mocked_apis": []
+}

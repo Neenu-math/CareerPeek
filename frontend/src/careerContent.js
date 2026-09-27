@@ -55,6 +55,18 @@ export const careerContent = {
     salary: [["STARTING OUT", "₹2.4L – ₹4.5L"], ["MID-CAREER", "₹4.5L – ₹8L"], ["EXPERIENCED", "₹8L+"]],
     salaryNote: "Government and large private hospitals often follow pay-scale structures. Salaries in metros and specialist units (ICU, OT, cardiac) tend to be higher; nurses abroad usually earn significantly more after fulfilling that country's registration.",
     firstHandPerspective: "Nursing involves much more than clinical procedures. Communication with patients and families, careful documentation, working across shifts and adapting to changing patient needs are just as much a part of the job as the medical side.",
+    beforeYouChoose: {
+      whatYouMightLove: [
+        { title: "Recovery, up close", description: "Seeing a patient take their first steps after surgery or leave the ward can make your part in their recovery feel tangible." },
+        { title: "Hands-on clinical confidence", description: "Wound care, monitoring vital signs and noticing changes in a patient's condition let you put your clinical training to use every shift." },
+        { title: "Find your kind of care", description: "Paediatrics, ICU and community nursing offer different ways to care for patients as your training and interests develop." },
+      ],
+      whatYouShouldKnow: [
+        { title: "A rota, not always nine-to-five", description: "Hospital nursing often includes nights, weekends and holidays. Hours on your feet and helping patients move can be physically demanding." },
+        { title: "Care can be emotionally heavy", description: "You will encounter pain, frightened families and sometimes loss. Team support and personal boundaries matter alongside your clinical skills." },
+        { title: "Small details carry real weight", description: "Medication checks, records and handovers help keep patients safe. You share responsibility for care with doctors, fellow nurses and other healthcare colleagues." },
+      ],
+    },
   },
 
   "software-developer": {
@@ -110,6 +122,18 @@ export const careerContent = {
     salary: [["STARTING OUT", "₹3L – ₹8L"], ["MID-CAREER", "₹9L – ₹22L"], ["EXPERIENCED", "₹22L+"]],
     salaryNote: "Ranges vary widely between service companies, product companies, top-tier tech firms and startups. Non-metro locations, freshers with fewer projects and less-known colleges usually see the lower end.",
     firstHandPerspective: "Software development is not only about writing new code. A big part of the job is reading existing code, understanding what someone else already built, debugging problems and testing changes carefully before they reach real users.",
+    beforeYouChoose: {
+      whatYouMightLove: [
+        { title: "Watch your code become useful", description: "A feature you build can save someone time or simplify an everyday task. User feedback helps you see what to improve next." },
+        { title: "The satisfaction of finding the bug", description: "Tracing a stubborn error to its cause can feel like solving a puzzle, especially when your fix makes a system reliable again." },
+        { title: "Bring your own ideas to life", description: "You can create apps, small automations or open-source tools with a computer and time to experiment, without needing a large team." },
+      ],
+      whatYouShouldKnow: [
+        { title: "Screen time is a big part of it", description: "Much of the day involves focused work at a computer. Coding shares that time with testing, documentation and discussions with teammates." },
+        { title: "It is not all building from scratch", description: "Expect to read unfamiliar code, maintain older systems and debug problems that may take hours to reproduce, not just create new features." },
+        { title: "Learning and delivery keep moving", description: "Changing tools mean learning continues after college. Release deadlines and, in some roles, on-call incidents can make the workload uneven." },
+      ],
+    },
   },
 
   "doctor": {
@@ -165,6 +189,18 @@ export const careerContent = {
     salary: [["STARTING OUT", "₹5L – ₹10L"], ["MID-CAREER", "₹12L – ₹25L"], ["EXPERIENCED", "₹25L+"]],
     salaryNote: "Government roles follow pay commission scales and often include allowances. Specialists in metros and top private hospitals earn significantly more, and independent practice varies widely with location, reputation and years of work.",
     firstHandPerspective: "Medicine is a long-haul career. Studying continues long after MBBS, night duties and pressure are real, and the meaningful moments often come alongside challenging days. Understanding this upfront helps you choose the specialty and setting that fit you.",
+    beforeYouChoose: {
+      whatYouMightLove: [
+        { title: "Science meets a patient's story", description: "Connecting symptoms, examination findings and test results can be deeply satisfying when it leads to a diagnosis and useful treatment." },
+        { title: "Trust that grows over time", description: "In specialties with follow-up care, you can support patients through recovery or help them manage a condition over many years." },
+        { title: "Different ways to practise medicine", description: "Surgery, family medicine and public health have different rhythms. Clinical rotations help you discover which kind of medical work draws you in." },
+      ],
+      whatYouShouldKnow: [
+        { title: "Training is a long commitment", description: "MBBS, internship and any specialist training take years. Entrance preparation, study costs and the timing of full-time earnings deserve early thought." },
+        { title: "Uncertainty comes with responsibility", description: "You may need to make clinical decisions before every answer is clear. Difficult outcomes and conversations can happen even with good treatment." },
+        { title: "Hours depend on where you practise", description: "Hospital training can involve night duties, emergencies and long shifts. Clinic schedules may differ, but paperwork and ongoing study remain." },
+      ],
+    },
   },
 
   "chartered-accountant": {
@@ -219,6 +255,18 @@ export const careerContent = {
     salary: [["STARTING OUT", "₹6L – ₹10L"], ["MID-CAREER", "₹12L – ₹25L"], ["EXPERIENCED", "₹25L+"]],
     salaryNote: "Big 4 and top-tier firms, industry roles and specialised practices pay higher; independent practice depends heavily on client base, city and years of experience.",
     firstHandPerspective: "The CA journey is intense — three levels of exams, three years of articleship, long study hours and unpredictable deadlines. The upside is that once you qualify, the skills you build are recognised across industries and can travel with you into finance, consulting or your own practice.",
+    beforeYouChoose: {
+      whatYouMightLove: [
+        { title: "See how a business really runs", description: "Accounts, audits and cash-flow analysis reveal how companies earn and spend, giving you a view beyond the headline profit." },
+        { title: "Turn rules into useful guidance", description: "Helping a client understand tax obligations or spot a reporting error can prevent costly surprises and clarify important financial decisions." },
+        { title: "Choose your financial specialism", description: "CA training can lead towards audit, tax, corporate finance or an independent practice, each with a different mix of clients and work." },
+      ],
+      whatYouShouldKnow: [
+        { title: "Exams sit alongside practical training", description: "ICAI exam preparation and practical training demand sustained planning. Progress can include repeat attempts, so time and financial support matter." },
+        { title: "Deadlines create busy seasons", description: "Audit closures, tax filings and year-end reporting can mean long days. The pace often depends on the firm's clients and calendar." },
+        { title: "Precision and independence matter", description: "Expect detailed checking, evidence gathering and updates to tax and reporting rules. You may need to challenge a client's preferred answer." },
+      ],
+    },
   },
 
   "entrepreneur": {
@@ -273,6 +321,18 @@ export const careerContent = {
     salary: [["STARTING OUT", "Highly variable"], ["MID-CAREER", "₹6L – ₹20L"], ["EXPERIENCED", "₹20L+"]],
     salaryNote: "Founder income depends on the stage of your company, funding, personal choices and the industry. Many founders earn less than a corporate role in the early years and more in later years, with a wide range of outcomes.",
     firstHandPerspective: "Starting a company is not the movie version. Most of the work is unglamorous — talking to customers, writing the same email again, dealing with GST, chasing payments, hiring and firing. If those things feel meaningful to you, the job will suit you.",
+    beforeYouChoose: {
+      whatYouMightLove: [
+        { title: "Shape the product and the priorities", description: "You can choose which customer problem to tackle and test your approach, rather than inherit a product someone else has already defined." },
+        { title: "First customers make ideas tangible", description: "Seeing someone choose and pay for what you built gives direct feedback on whether your idea has value beyond your own enthusiasm." },
+        { title: "Build a team in your own way", description: "As a venture grows, you can influence who you hire, how people collaborate and what standards the business stands for." },
+      ],
+      whatYouShouldKnow: [
+        { title: "Revenue is not a reliable payslip", description: "Sales and funding can be unpredictable, and a venture may not succeed. Paying yourself can come after covering essential business costs." },
+        { title: "The unglamorous jobs are yours too", description: "Early on, selling, chasing payments, handling complaints and sorting tax or compliance can take more time than developing the idea." },
+        { title: "Freedom comes with obligations", description: "Customers, employees and investors can constrain your choices. Switching off may be hard when cash flow or an urgent delivery depends on you." },
+      ],
+    },
   },
 
 };

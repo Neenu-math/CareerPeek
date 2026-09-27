@@ -1,0 +1,21 @@
+// Stable IDs are shared by the interaction weights and career profiles.
+export const traitDefinitions = {
+  problemSolver: { label: "Problem Solver", icon: "🧩", description: "Your choices suggest you enjoy figuring things out and working through challenges." },
+  explorer: { label: "Explorer", icon: "🔎", description: "You seem drawn to discovering new things and following your curiosity." },
+  creator: { label: "Creator", icon: "🎨", description: "You seem to enjoy imagining possibilities and giving your ideas a shape." },
+  collaborator: { label: "Collaborator", icon: "🤝", description: "Your choices suggest you like sharing the thinking and making progress together." },
+  communicator: { label: "Communicator", icon: "💬", description: "You seem to enjoy exchanging ideas and talking things through with people." },
+  organizer: { label: "Organizer", icon: "📋", description: "You seem to value turning a busy situation into a plan you can work with." },
+  detailThinker: { label: "Detail Thinker", icon: "📊", description: "Your choices suggest you like looking closely at information before moving ahead." },
+  adaptable: { label: "Adaptable", icon: "🔄", description: "You seem open to adjusting your approach when the situation changes." },
+  empathy: { label: "People-Oriented", icon: "❤️", description: "Making a difference to someone else seems to give your work meaning." },
+  independent: { label: "Independent Worker", icon: "🌱", description: "You seem to value room to think and work things through in your own way." },
+  deepFocus: { label: "Deep Focus", icon: "🎯", description: "You seem to enjoy giving one challenge your attention without switching too often." },
+  variety: { label: "Variety Seeker", icon: "🌈", description: "Your choices suggest you enjoy a mix of activities and changes of pace." },
+  mastery: { label: "Learning-Oriented", icon: "📚", description: "Getting better at something seems to matter to you, even when it takes practice." },
+  maker: { label: "Maker", icon: "🛠️", description: "You seem to enjoy turning an idea into something you can try out or use." },
+  improver: { label: "Improvement Mindset", icon: "✨", description: "You seem drawn to noticing what could work better and refining it." },
+  finisher: { label: "Outcome-Oriented", icon: "🏁", description: "Seeing an effort turn into a finished result seems to help you keep going." },
+  structure: { label: "Structure Seeker", icon: "🗓️", description: "Knowing what is coming and having a clear routine seem to appeal to you." },
+  persistence: { label: "Persistent Learner", icon: "🌻", description: "Your choices suggest you are willing to stay with a challenge as you learn." },
+};

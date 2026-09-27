@@ -12,6 +12,8 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Reusable UI components, `careerDefaults.js`, `careerEnhancements.js`, and all CSS are retained. The default profile generator is not used by active routing.
 - Generated bitmap illustrations are reused consistently across cards, introductions, and roadmap pages.
 - No API or database is required for the current V1.
+- Current V2 assessment lives in `frontend/src/features/reality-check/`: one shared engine/UI, career-specific interaction configuration, intro/completion views and version-2 per-career sessionStorage progress. dnd-kit handles token dragging; the existing Radix-backed Slider handles preferences.
+- The active results flow is intentionally DISABLED. Earlier interrupted `ResultsPage.jsx` / scoring code remains dormant, not imported by `App.js`. Results URLs redirect to assessment; no generated scores, interpretations, recommendations or LinkedIn section is exposed in the current flow.
 
 ## User personas
 - **The Curious Student:** wants a fast, friendly answer to “what is this career really like?”
@@ -22,9 +24,10 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - CareerPeek brand and simple “LET’S START.” home experience.
 - Five careers: Nurse, Software Developer, Doctor, Chartered Accountant, Entrepreneur.
 - Searchable career directory with working Explore links.
-- Detail pages with actual work checklist, typical day timeline, skills chips, and roadmap CTA.
+- Detail page order (latest approved): actual work → typical day → skills → Something Worth Knowing First (first-hand paragraph plus What You Might Love / What You Should Know) → full-roadmap CTA → career-specific salary → Reality Check CTA.
 - Roadmap pages with six connected milestone nodes and expandable details.
-- LinkedIn search links relevant to each career, opening in a new tab.
+- No LinkedIn/Meet Professionals section on career detail or roadmap pages, per the latest user request. Reintroduction belongs to a future approved results flow, not this task.
+- Dedicated career-specific Reality Check: introduction, exactly six interactive experiences, completion. “See My Results” stays disabled until a separate results task is approved.
 - Responsive desktop and mobile layout with obvious back navigation.
 - Friendly, cheerful, editorial UI inspired by learning-journey products without copying branding.
 
@@ -35,7 +38,7 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Added a consistent generated illustration set, responsive styling, motion, test IDs, and mobile layout safeguards.
 - Verified with a production build and live frontend testing: core desktop/mobile flow passed with no reported UI or integration defects.
 
-**2026-09-27 — Library-only cleanup (current approved scope, complete)**
+**2026-09-27 — Library-only cleanup (earlier approved scope, complete)**
 - User paused the expanded library and requested ONLY the original five careers; no redesign, navigation changes, content rewrites, new sections or further V2 work.
 - Confirmed the original five from pre-expansion commit `7d174bc`, the original PRD and featured flags: Nurse, Software Developer, Doctor, Chartered Accountant, Entrepreneur, in that order.
 - Inspection identified a 59-entry catalog, six additional hand-written profiles, expansion-only search rows and generic profile fallback routing. The historical stub component was already gone; its reusable styling remains untouched.
@@ -48,20 +51,36 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Content comparison confirmed all five retained profile objects equal their pre-cleanup snapshots and `App.css` is byte-identical. No active removed-career links/data entries remain in source/public/build.
 - Career information remains intentionally STATIC frontend data; no backend, authentication or API integration added or mocked. LinkedIn is an outgoing link; external authenticated results are not controlled by CareerPeek.
 
+**2026-09-27 — Before You Choose, Reality Check, and final navigation scope (complete)**
+- Added `beforeYouChoose.whatYouMightLove` / `.whatYouShouldKnow` arrays with three concise, unique `{title, description}` notes each for all five existing careers. Original profile fields were preserved.
+- Earlier Reality Check work was interrupted before full testing. The latest user request superseded its placement and results scope; do not restore the earlier roadmap-to-results flow.
+- User clarified that Something Worth Knowing First must preserve BOTH the original first-hand paragraph and the three love/three know notes. These now appear together after Skills That Matter.
+- Moved the unchanged career-specific salary tiers/notes to the detail page after the existing full-roadmap CTA. Immediately below salary, the prominent “Want to see your Reality Check?” / “Take the Reality Check” link opens the CURRENT career's dedicated assessment.
+- Removed LinkedIn/Meet Professionals from the career information pages. Roadmap milestone content, illustration, expansion controls and existing Back behavior remain, with bottom links back to details or the five-career directory.
+- Added the requested intro wording and “Let's Begin”, then six interactive experiences: five energy tokens across eight activity cards, one/two of four environments, four trade-offs inside step 3, one of four change reactions, exactly two motivation cards, and five preference sliders.
+- All five careers have distinct activities, environments, trade-off prompts/options, change scenarios/reactions, motivation context and mix context in `config/careerVariants.js`. No Teacher, Architect or other careers were added; those were examples only.
+- Completion displays “That's your Reality Check.” and the requested explanation. **User explicitly chose to keep “See My Results” disabled, rather than linking to a holding page or generated results.** A clear unavailable message is shown. Existing results URLs redirect to the assessment; dormant result code is not exposed.
+- Progress, answers, current trade-off and intro/assessment/completion phase persist per career in sessionStorage v2. Corrupt/outdated sessions reset safely. Storage denial uses in-memory state and a warning. Answering a trade-off does not auto-advance; Next choice advances, and refresh preserves the exact position.
+- Added atomic latest-state token updates plus direct card-tap allocation and retained +/−/drag controls. Centered intro illustrations. No backend, auth, APIs, external AI or mock integration added.
+- Tests: `yarn build` passed. `/app/test_reports/iteration_6.json` records full six-step completion for Software Developer and Nurse at desktop1920x800/mobile390x844, actual mobile touch drag/sliders, completion/review, refresh, invalid-session handling and all-five career regression/config uniqueness checks.
+- `/app/test_reports/iteration_7_verification.json` resolves the two remaining iteration_6 findings through direct browser verification: real desktop mouse bank→activity→activity→bank works with post-scroll hit-tested coordinates; selected pair3 reload correctly retains pair3 AND its saved answer, and clicking Next then reloading retains pair4. No remaining confirmed functional defects. Do not implement auto-advance on reload to satisfy the earlier incorrect test expectation.
+- Latest flow-change preservation check: `careerContent.js`, `careersDb.js`, and `App.css` are byte-identical to `/tmp/careerpeek-flow-before/`. Home, search, five-career library and original content have not been rewritten.
+
 ## Prioritized backlog
 
 ### P0 — Current request
-- Complete: five-career library cleanup and regression verification. No outstanding blockers or known failed app flows.
+- Complete: requested detail-page ordering and career-specific six-step assessment, including intro, completion, desktop/mobile verification and refresh behavior. No remaining confirmed blockers.
+- Intentional unavailable flow: results generation/navigation is disabled, exactly as the user chose. Do not claim results are shipped.
 
 ### P1 — On hold
-- Await user review of the five-career experience. Do not automatically continue V2 content work or expand the library.
-- Optional later enhancement, only if requested: an educator review of the five career profiles for accuracy and clarity.
+- Await user review of the assessment. Build/enable results only after explicit approval, with separate deterministic scoring, interpretation, recommendations and networking tests.
+- Optional enhancement, only if requested: a short student usability review to refine the clarity of the career-specific scenarios.
 
 ### P2 — Paused backlog, not authorized for implementation
 - Expanded career library and further career-content enrichment.
-- Reality Check, Advantages & Challenges, recommendations, assessments, additional roadmap sections or new UI components. User explicitly excluded all from this task.
+- Additional assessment features, live recommendations, additional roadmap sections and unrelated UI changes are not authorized by the current request.
 - Earlier ideas (saved careers, comparison, reflection prompts, analytics) remain unapproved; do not implement without a new request.
 
 ## Next tasks
-1. Stop after this verified library-only cleanup, as requested.
-2. Wait for explicit user direction before any additional development.
+1. Stop after the verified assessment and navigation flow. Keep See My Results disabled.
+2. Wait for explicit user direction before implementing or exposing results or any other features.
