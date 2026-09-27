@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-27",
+  "scope": "UI-only emoji removal and restrained visual polish",
+  "status": "passed",
+  "build": "yarn build passed",
+  "baseline_commit": "0008db28ce320cce191055ac65d9b8a89c900ac9",
+  "byte_identical_to_baseline": [
+    "App.js (all routes and page-section ordering)",
+    "careerContent.js (all career, roadmap and salary content)",
+    "careersDb.js (original five careers)",
+    "reality-check/engine.js",
+    "reality-check/session.js",
+    "reality-check/answers.js",
+    "Every reality-check/config/*.js file"
+  ],
+  "direct_browser_checks": {
+    "desktop": "1920x800",
+    "mobile": "390x844",
+    "all_five_careers": "Overview and roadmap/salary/CTA pages checked for emoji-free rendered text, expected section placement, salary cards and no LinkedIn outside results.",
+    "full_flows": ["Chartered Accountant on desktop", "Nurse on mobile"],
+    "covered": [
+      "Home and five-card directory",
+      "Assessment intro and all six experiences, including all four trade-offs",
+      "Five-token tap allocation and completion gating",
+      "Environment selection, change response and motivation selection",
+      "All five preference sliders",
+      "Completion and existing results navigation",
+      "Three result cards with heading first and explanation directly beneath; no emoji element",
+      "Three existing-career suggestions and their overview links",
+      "Results-only LinkedIn section",
+      "Stable result signals after refresh"
+    ],
+    "rendered_emoji_matches": [],
+    "horizontal_overflow_offenders": [],
+    "browser_log": "/root/.emergent/automation_output/20260927_144207/console_20260927_144207.log"
+  },
+  "verification_notes": "Initial check scripts had a syntax error and an immediate post-navigation assertion race. These were corrected in the checks, not by modifying app functionality; the final complete run passed.",
+  "testing_agent_used": false,
+  "known_app_failures": [],
+  "mocked_apis": []
+}

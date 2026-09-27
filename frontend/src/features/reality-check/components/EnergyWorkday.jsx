@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { DndContext, DragOverlay, KeyboardSensor, PointerSensor, pointerWithin, rectIntersection, useDraggable, useDroppable, useSensor, useSensors } from "@dnd-kit/core";
-import { Minus, Plus } from "lucide-react";
+import { Grip, Minus, Plus } from "lucide-react";
 
 const Token = ({ index, small = false }) => {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id: `token-${index}`, data: { index } });
-  return <button ref={setNodeRef} {...attributes} {...listeners} className={`rc-token ${small ? "rc-token-small" : ""}`} style={{ opacity: isDragging ? 0.25 : 1 }} aria-label={`Energy token ${index + 1}`} data-testid={`energy-token-${index}`}><span aria-hidden="true">⚡</span></button>;
+  return <button ref={setNodeRef} {...attributes} {...listeners} className={`rc-token ${small ? "rc-token-small" : ""}`} style={{ opacity: isDragging ? 0.25 : 1 }} aria-label={`Energy token ${index + 1}`} data-testid={`energy-token-${index}`}><Grip size={small ? 14 : 18} aria-hidden="true" /></button>;
 };
 
 const TokenBank = ({ tokens }) => {
@@ -12,7 +12,7 @@ const TokenBank = ({ tokens }) => {
   const remaining = tokens.filter(id => id === null).length;
   return <div ref={setNodeRef} className={`rc-token-bank ${isOver ? "rc-drop-active" : ""}`} data-testid="energy-token-bank">
     <div><strong data-testid="energy-remaining-count" aria-live="polite">{remaining ? `${remaining} energy token${remaining === 1 ? "" : "s"} left` : "Your day, your energy"}</strong><span>5 tokens · move them anytime</span></div>
-    <div className="rc-token-supply">{tokens.map((target, i) => target === null && <Token key={i} index={i} />)}{remaining === 0 && <span className="rc-all-placed" data-testid="energy-all-placed">All five placed ✓</span>}</div>
+    <div className="rc-token-supply">{tokens.map((target, i) => target === null && <Token key={i} index={i} />)}{remaining === 0 && <span className="rc-all-placed" data-testid="energy-all-placed">All five placed</span>}</div>
   </div>;
 };
 
@@ -21,7 +21,6 @@ const Activity = ({ activity, tokens, onAdd, onRemove }) => {
   const count = tokens.filter(id => id === activity.id).length;
   return <div ref={setNodeRef} className={`rc-activity ${count ? "rc-has-energy" : ""} ${isOver ? "rc-drop-active" : ""}`} data-testid={`energy-activity-${activity.id}`}>
     <button className="rc-activity-select" onClick={onAdd} disabled={!tokens.includes(null)} aria-label={`Place a token on ${activity.label}`} data-testid={`energy-place-${activity.id}`}>
-      <span className="rc-activity-icon" aria-hidden="true">{activity.icon}</span>
       <span className="rc-activity-label" data-testid={`energy-activity-title-${activity.id}`}>{activity.label}</span>
     </button>
     <div className="rc-token-placed">{tokens.map((target, i) => target === activity.id && <Token key={i} index={i} small />)}</div>
@@ -48,6 +47,6 @@ export const EnergyWorkday = ({ tokens, onChange, activities }) => {
   }}>
     <TokenBank tokens={tokens} />
     <div className="rc-activity-grid">{activities.map(activity => <Activity key={activity.id} activity={activity} tokens={tokens} onAdd={() => allocate(activity.id)} onRemove={() => allocate(activity.id, true)} />)}</div>
-    <DragOverlay>{active ? <span className="rc-token rc-token-overlay" aria-hidden="true">⚡</span> : null}</DragOverlay>
+    <DragOverlay>{active ? <span className="rc-token rc-token-overlay" aria-hidden="true"><Grip size={18} /></span> : null}</DragOverlay>
   </DndContext>;
 };

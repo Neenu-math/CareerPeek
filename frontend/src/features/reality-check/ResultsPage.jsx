@@ -11,7 +11,7 @@ import "./reality-check.css";
 
 const RealityNotes = ({ title, items, testId }) => <section className={`rc-reality-notes ${testId}`} data-testid={testId}>
   <h3 data-testid={`${testId}-heading`}>{title}</h3>
-  <ul>{items.map((item, index) => <li key={item.text} data-testid={`${testId}-item-${index}`}><span aria-hidden="true">{item.icon}</span><p>{item.text}</p></li>)}</ul>
+  <ul>{items.map((item, index) => <li key={item.text} data-testid={`${testId}-item-${index}`}><p>{item.text}</p></li>)}</ul>
 </section>;
 
 export default function ResultsPage({ career, illustration, artFor }) {
@@ -34,7 +34,7 @@ export default function ResultsPage({ career, illustration, artFor }) {
       <h2 id="rc-signals-heading" data-testid="results-signals-heading">{resultCopy.signalsTitle}</h2>
       <div className="rc-signal-grid">{result.strongest.map(id => {
         const trait = traitDefinitions[id];
-        return <article key={id} className="rc-signal" data-testid={`result-signal-${id}`}><span className="rc-signal-icon" aria-hidden="true">{trait.icon}</span><h3 data-testid={`result-signal-name-${id}`}>{trait.label}</h3><p data-testid={`result-signal-description-${id}`}>{trait.description}</p></article>;
+        return <article key={id} className="rc-signal" data-testid={`result-signal-${id}`}><h3 data-testid={`result-signal-name-${id}`}>{trait.label}</h3><p data-testid={`result-signal-description-${id}`}>{trait.description}</p></article>;
       })}</div>
       <p className="rc-result-disclaimer" data-testid="results-disclaimer">{resultCopy.disclaimer}</p>
     </section>
@@ -56,7 +56,7 @@ export default function ResultsPage({ career, illustration, artFor }) {
       })}</div>
     </section>
     <section className="rc-result-connect" data-testid="results-meet-professionals">
-      <div><span aria-hidden="true" className="rc-connect-icon">🤝</span><h2 data-testid="results-connect-heading">{resultCopy.connectTitle}</h2><p data-testid="results-connect-description">{resultCopy.connectIntro}</p></div>
+      <div><h2 data-testid="results-connect-heading">{resultCopy.connectTitle}</h2><p data-testid="results-connect-description">{resultCopy.connectIntro}</p></div>
       <a href={`https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(career.name)}`} target="_blank" rel="noreferrer" className="primary-button" data-testid="results-linkedin-button">Find Professionals on LinkedIn <ExternalLink size={17} /></a>
     </section>
   </main>;

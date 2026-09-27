@@ -2,8 +2,8 @@ import "./BeforeYouChoose.css";
 
 export const BeforeYouChoose = ({ content, heading = "BEFORE YOU CHOOSE", perspective }) => {
   const perspectives = [
-    { key: "love", icon: "✨", title: "WHAT YOU MIGHT LOVE", items: content.whatYouMightLove },
-    { key: "know", icon: "👀", title: "WHAT YOU SHOULD KNOW", items: content.whatYouShouldKnow },
+    { key: "love", title: "WHAT YOU MIGHT LOVE", items: content.whatYouMightLove },
+    { key: "know", title: "WHAT YOU SHOULD KNOW", items: content.whatYouShouldKnow },
   ];
 
   return (
@@ -16,10 +16,9 @@ export const BeforeYouChoose = ({ content, heading = "BEFORE YOU CHOOSE", perspe
       </div>
       {perspective && <p className="choice-first-hand" data-testid="first-hand-perspective">{perspective}</p>}
       <div className="choice-perspectives">
-        {perspectives.map(({ key, icon, title, items }) => (
+        {perspectives.map(({ key, title, items }) => (
           <section className={`choice-perspective choice-perspective--${key}`} key={key} aria-labelledby={`choice-${key}-heading`} data-testid={`before-you-choose-${key}`}>
             <h3 id={`choice-${key}-heading`} data-testid={`before-you-choose-${key}-heading`}>
-              <span className="choice-symbol" aria-hidden="true">{icon}</span>
               <span>{title}</span>
             </h3>
             <ul className="choice-notes" data-testid={`before-you-choose-${key}-list`}>

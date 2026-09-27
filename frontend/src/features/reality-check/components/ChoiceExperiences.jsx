@@ -1,12 +1,14 @@
 import { Check } from "lucide-react";
 import { motivations } from "../config/interactions";
 
+// Strip only decorative prefixes at render time; keep the source content intact.
+const withoutDecorativePrefix = line => line.replace(/^[\p{Extended_Pictographic}\p{Emoji_Modifier}\uFE0F\u200D\s]+/u, "");
+
 export const ChoiceCard = ({ option, selected, disabled, onClick, prefix, scene = false }) => (
   <button type="button" onClick={onClick} disabled={disabled} aria-pressed={selected} className={`rc-choice ${scene ? `rc-scene rc-scene-${option.theme}` : ""} ${selected ? "is-selected" : ""}`} data-testid={`${prefix}-${option.id}`}>
     <span className="rc-choice-tick" aria-hidden="true">{selected && <Check size={16} />}</span>
-    <span className="rc-choice-icon" aria-hidden="true">{option.icon}</span>
     <span className="rc-choice-title">{option.title || option.label}</span>
-    {option.lines && <span className="rc-scene-lines">{option.lines.map(line => <span key={line}>{line}</span>)}</span>}
+    {option.lines && <span className="rc-scene-lines">{option.lines.map(line => <span key={line}>{withoutDecorativePrefix(line)}</span>)}</span>}
   </button>
 );
 
@@ -18,7 +20,6 @@ export const EnvironmentPicker = ({ values, onChange, environments }) => <>
 </>;
 
 export const ChangeResponse = ({ value, onChange, changeResponses }) => <>
-  <div className="rc-change-path" aria-hidden="true"><span>📋</span><span>→</span><span>〰️</span><span>→</span><span>💡</span></div>
   <div className="rc-change-grid">{changeResponses.map(option => <ChoiceCard key={option.id} option={option} selected={value === option.id} onClick={() => onChange(option.id)} prefix="change" />)}</div>
   <p className="rc-transition-note" role="status" data-testid="change-transition-message">{value ? "Got it. Let's keep going." : ""}</p>
 </>;

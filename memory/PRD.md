@@ -80,13 +80,23 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Direct verification record: `/app/test_reports/final_v2_flow_verification.json`. No separate testing agent used for this final request. No known failures or mocked APIs; LinkedIn authenticated content remains external.
 - **This FINAL V2 record supersedes earlier statements about salary/CTA on overview, results being disabled, or old results-route redirects. Do not reinstate those intermediate configurations.**
 
+**2026-09-27 — Final UI-only polish (complete)**
+- User requested removal of decorative emoji clutter across the application, with NO changes to flow, page structure, career-specific content, assessment behavior, scoring, results or features. Work resumed after the user recharged credits.
+- Removed emoji rendering from career-perspective headings, assessment activity/choice cards, environment descriptions, decorative scenario/header art, slider labels, result signals/context lists and the final LinkedIn section. Hid the standalone decorative home star while preserving the brand mark and existing illustrations.
+- Kept the three strongest-signal cards with heading → explanation hierarchy and subtle pastel top borders. Kept existing palette, typography, card grids, sections, selected states and progress treatment.
+- Energy tokens now use a small functional drag-grip icon rather than lightning emoji, with softer neutral surfaces. Add/remove, selection, directional and external-link icons remain for usability. All allocation handlers are unchanged.
+- Emoji-prefixed environment text is cleaned ONLY when rendered. The original source data and wording remain intact; existing icon metadata is intentionally retained but not rendered.
+- Verified against pre-polish commit `0008db28ce320cce191055ac65d9b8a89c900ac9`: `App.js`, all career/library content, `engine.js`, `session.js`, `answers.js`, and every assessment configuration file are byte-identical. No navigation, logic or content changes.
+- Build passed. Direct checks covered Home/directory, all five overview/roadmap pages, full desktop CA and mobile Nurse six-step flows through results, recommendation links and refresh. Checked rendered text is emoji-free and no horizontal overflow at 1920x800/390x844. No testing agent used. Record: `/app/test_reports/ui_polish_verification.json`.
+- No new features, API integrations, mocks or known app failures. The final V2 flow remains unchanged and complete.
+
 ## Prioritized backlog
 
 ### P0 — Current request
 - Complete: Overview → Full Roadmap → Salary → Reality Check → existing six-step assessment → Results → Careers Worth Exploring → LinkedIn. No outstanding confirmed blockers.
 
 ### P1 — On hold
-- Await user review of the completed final V2 flow; no further implementation required for this request.
+- Await user review of the completed final V2 flow and emoji-free visual polish; no further implementation required for this request.
 - Optional enhancement, only if requested: a short student usability review to refine the clarity of the career-specific scenarios.
 
 ### P2 — Paused backlog, not authorized for implementation
@@ -95,5 +105,5 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Earlier ideas (saved careers, comparison, reflection prompts, analytics) remain unapproved; do not implement without a new request.
 
 ## Next tasks
-1. Stop after the verified final V2 flow and working results. No further changes without a new request.
+1. Stop after the verified UI-only polish. Preserve the final V2 flow and working results; no further changes without a new request.
 2. Optional later enhancement: collect student feedback on the clarity of result explanations.

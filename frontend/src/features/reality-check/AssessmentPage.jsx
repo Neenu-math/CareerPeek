@@ -58,7 +58,7 @@ export default function AssessmentPage({ career, illustration }) {
     <AssessmentProgress step={step} />
     <header className="rc-experience-heading">
       <div><div className="rc-career-label" data-testid="assessment-selected-career">REALITY CHECK: {configuration.label.toUpperCase()}</div><h1 id="rc-experience-title" tabIndex={-1} data-testid="assessment-experience-title">{interaction.title}</h1><p data-testid="assessment-experience-prompt">{interaction.prompt}</p></div>
-      <div className="rc-career-art"><img src={illustration} alt={`${career.name} illustration`} data-testid="assessment-career-illustration" /><span aria-hidden="true">{profile.icons.join(" ")}</span></div>
+      <div className="rc-career-art"><img src={illustration} alt={`${career.name} illustration`} data-testid="assessment-career-illustration" /></div>
     </header>
     <p className="rc-instruction" data-testid="assessment-instruction">{interaction.instruction}</p>
     {saveError && <p role="alert" className="rc-storage-warning" data-testid="assessment-storage-warning">This tab cannot save progress for refresh. Keep it open until you're finished.</p>}
