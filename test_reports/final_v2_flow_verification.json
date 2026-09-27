@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-27",
+  "status": "passed",
+  "method": "Direct build, deterministic calculation checks and live browser verification; no separate testing agent used for this change",
+  "build": "yarn build passed",
+  "scoring_checks": {
+    "answer_patterns": 60,
+    "career_result_cases": 300,
+    "passed": ["Deterministic repeatability", "Each of six interaction vectors has unit weight", "Combined scores are finite, non-negative and normalised", "Exactly three distinct strongest signals", "Answers produce different signal combinations", "Three unique recommendations restricted to the other four active careers", "Incomplete answers rejected", "No raw recommendation strength returned for presentation"]
+  },
+  "full_clickable_flows": {
+    "desktop_1920x800": ["software-developer", "chartered-accountant", "doctor"],
+    "mobile_390x844": ["nurse", "entrepreneur"],
+    "sequence": "Home / directory search → existing career overview → full roadmap → salary → Reality Check intro → all six experiences → completion → See My Results → personalised results → recommended career overview → browser Back → LinkedIn",
+    "passed": [
+      "Overview contains neither salary nor Reality Check and ends at full-roadmap CTA",
+      "Roadmap contains six milestones followed immediately by salary and Reality Check CTA",
+      "Roadmap expansion and selected-career assessment links work",
+      "All six existing experiences remain interactive and preserve career-specific wording",
+      "See My Results now opens the selected career's dedicated results URL",
+      "Results show correct header, three choice-derived signals, career interpretation and three considerations from existing career content",
+      "Three career suggestion links point to existing overview routes and exclude the selected career",
+      "Exactly one LinkedIn link exists, in the final results section; none on overview, roadmap or assessment",
+      "LinkedIn new-tab click verified for Nurse; all five URLs use their correct profession query",
+      "Results survive refresh and return correctly after opening a suggested career",
+      "Incomplete direct results URL redirects to the matching assessment, not a placeholder",
+      "No horizontal overflow on checked desktop/mobile overview and result screens",
+      "No browser runtime exceptions"
+    ]
+  },
+  "preservation": ["careerContent.js unchanged", "careersDb.js unchanged", "App.css unchanged", "Assessment interaction components unchanged", "Career-specific assessment configuration unchanged", "Existing assessment/result stylesheet unchanged"],
+  "browser_log": "/root/.emergent/automation_output/20260927_131135/console_20260927_131135.log",
+  "known_failures": [],
+  "mocked_apis": [],
+  "external_scope": "LinkedIn outgoing links and new-tab behavior verified; authenticated LinkedIn search content is controlled by LinkedIn."
+}

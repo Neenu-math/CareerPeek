@@ -13,7 +13,7 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Generated bitmap illustrations are reused consistently across cards, introductions, and roadmap pages.
 - No API or database is required for the current V1.
 - Current V2 assessment lives in `frontend/src/features/reality-check/`: one shared engine/UI, career-specific interaction configuration, intro/completion views and version-2 per-career sessionStorage progress. dnd-kit handles token dragging; the existing Radix-backed Slider handles preferences.
-- The active results flow is intentionally DISABLED. Earlier interrupted `ResultsPage.jsx` / scoring code remains dormant, not imported by `App.js`. Results URLs redirect to assessment; no generated scores, interpretations, recommendations or LinkedIn section is exposed in the current flow.
+- FINAL V2: `ResultsPage.jsx` and deterministic `engine.js` are now active. Completed answers produce three strongest signals, career-specific interpretation, three existing-career suggestions and a final LinkedIn section. Incomplete results URLs return to the selected career's assessment. No AI or backend integration.
 
 ## User personas
 - **The Curious Student:** wants a fast, friendly answer to “what is this career really like?”
@@ -24,10 +24,11 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - CareerPeek brand and simple “LET’S START.” home experience.
 - Five careers: Nurse, Software Developer, Doctor, Chartered Accountant, Entrepreneur.
 - Searchable career directory with working Explore links.
-- Detail page order (latest approved): actual work → typical day → skills → Something Worth Knowing First (first-hand paragraph plus What You Might Love / What You Should Know) → full-roadmap CTA → career-specific salary → Reality Check CTA.
+- Overview page order (FINAL approved): actual work → typical day → skills → Something Worth Knowing First (first-hand paragraph plus What You Might Love / What You Should Know) → full-roadmap CTA ONLY. No salary or Reality Check on overview.
 - Roadmap pages with six connected milestone nodes and expandable details.
-- No LinkedIn/Meet Professionals section on career detail or roadmap pages, per the latest user request. Reintroduction belongs to a future approved results flow, not this task.
-- Dedicated career-specific Reality Check: introduction, exactly six interactive experiences, completion. “See My Results” stays disabled until a separate results task is approved.
+- Dedicated roadmap contains the existing six-step journey, then career-specific salary, then Reality Check CTA. This is the only salary/assessment entry placement.
+- LinkedIn/Meet Professionals appears ONLY at the bottom of Results, after the career suggestions. Never on overview, roadmap or assessment.
+- Dedicated career-specific Reality Check: introduction, exactly six existing interactive experiences, completion, then working “See My Results” navigation. Personal results are exploratory, never suitability percentages, diagnosis or pass/fail.
 - Responsive desktop and mobile layout with obvious back navigation.
 - Friendly, cheerful, editorial UI inspired by learning-journey products without copying branding.
 
@@ -51,7 +52,7 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - Content comparison confirmed all five retained profile objects equal their pre-cleanup snapshots and `App.css` is byte-identical. No active removed-career links/data entries remain in source/public/build.
 - Career information remains intentionally STATIC frontend data; no backend, authentication or API integration added or mocked. LinkedIn is an outgoing link; external authenticated results are not controlled by CareerPeek.
 
-**2026-09-27 — Before You Choose, Reality Check, and final navigation scope (complete)**
+**2026-09-27 — Before You Choose and intermediate Reality Check flow (historical; placement/results scope superseded below)**
 - Added `beforeYouChoose.whatYouMightLove` / `.whatYouShouldKnow` arrays with three concise, unique `{title, description}` notes each for all five existing careers. Original profile fields were preserved.
 - Earlier Reality Check work was interrupted before full testing. The latest user request superseded its placement and results scope; do not restore the earlier roadmap-to-results flow.
 - User clarified that Something Worth Knowing First must preserve BOTH the original first-hand paragraph and the three love/three know notes. These now appear together after Skills That Matter.
@@ -66,21 +67,33 @@ Build a polished, responsive web app called CareerPeek for students who want to 
 - `/app/test_reports/iteration_7_verification.json` resolves the two remaining iteration_6 findings through direct browser verification: real desktop mouse bank→activity→activity→bank works with post-scroll hit-tested coordinates; selected pair3 reload correctly retains pair3 AND its saved answer, and clicking Next then reloading retains pair4. No remaining confirmed functional defects. Do not implement auto-advance on reload to satisfy the earlier incorrect test expectation.
 - Latest flow-change preservation check: `careerContent.js`, `careersDb.js`, and `App.css` are byte-identical to `/tmp/careerpeek-flow-before/`. Home, search, five-career library and original content have not been rewritten.
 
+**2026-09-27 — FINAL V2 flow and complete results integration (current approved scope, complete)**
+- User requested all changes in one run, preserving visual identity and the existing assessment, with direct verification rather than a separate testing agent.
+- Removed Salary and Reality Check from overview. Its last section is now only the existing Full Roadmap CTA.
+- Moved the unchanged Salary component and Reality Check CTA immediately after the six roadmap milestones. CTA copy: “There are no right or wrong answers. Explore how your preferences connect with this career.” Assessment Back links return to that roadmap.
+- Kept all six interaction components, career-specific configuration, choices, validation and persistence unchanged. Enabled the completion screen's See My Results link to `/careers/:slug/reality-check/results`.
+- Activated and completed the reusable results view: exact “Your Reality Check” header/supporting text; three deterministic choice-derived strongest signals; “How this connects to [career]”; supported natural-overlap examples; considerations taken directly from the selected career's existing Before You Choose content; three relevant suggestions restricted to the original five; and only then the LinkedIn CTA.
+- Recommendations exclude the selected career, explain the shared signals and navigate to the existing career overview routes. No duplicate career pages, new careers or score percentages. Results persist on refresh; incomplete or invalid sessions return to the correct assessment.
+- LinkedIn appears exactly once, as the last results section, with the correct career name in the people-search URL and a new-tab link. No LinkedIn section exists on overview, roadmap or assessment.
+- Verification: production build passed; 300 deterministic calculation/result checks across 60 answer patterns passed; all five complete live-browser flows passed (Software Developer, CA, Doctor at 1920x800; Nurse, Entrepreneur at 390x844), including all six interactions, results, suggestion navigation, refresh/back and LinkedIn link checks. No runtime exceptions or horizontal overflow on checked pages.
+- Preservation: `careerContent.js`, `careersDb.js`, `App.css`, all six interaction components, career-specific assessment variants and the assessment/result stylesheet remain byte-identical to `/tmp/careerpeek-final-v2-before/` snapshots. No assessment rebuild or visual redesign.
+- Direct verification record: `/app/test_reports/final_v2_flow_verification.json`. No separate testing agent used for this final request. No known failures or mocked APIs; LinkedIn authenticated content remains external.
+- **This FINAL V2 record supersedes earlier statements about salary/CTA on overview, results being disabled, or old results-route redirects. Do not reinstate those intermediate configurations.**
+
 ## Prioritized backlog
 
 ### P0 — Current request
-- Complete: requested detail-page ordering and career-specific six-step assessment, including intro, completion, desktop/mobile verification and refresh behavior. No remaining confirmed blockers.
-- Intentional unavailable flow: results generation/navigation is disabled, exactly as the user chose. Do not claim results are shipped.
+- Complete: Overview → Full Roadmap → Salary → Reality Check → existing six-step assessment → Results → Careers Worth Exploring → LinkedIn. No outstanding confirmed blockers.
 
 ### P1 — On hold
-- Await user review of the assessment. Build/enable results only after explicit approval, with separate deterministic scoring, interpretation, recommendations and networking tests.
+- Await user review of the completed final V2 flow; no further implementation required for this request.
 - Optional enhancement, only if requested: a short student usability review to refine the clarity of the career-specific scenarios.
 
 ### P2 — Paused backlog, not authorized for implementation
 - Expanded career library and further career-content enrichment.
-- Additional assessment features, live recommendations, additional roadmap sections and unrelated UI changes are not authorized by the current request.
+- Additional assessment features, new roadmap sections and unrelated UI changes are not authorized by the current request. Recommendations within the existing five careers are now implemented; library expansion remains paused.
 - Earlier ideas (saved careers, comparison, reflection prompts, analytics) remain unapproved; do not implement without a new request.
 
 ## Next tasks
-1. Stop after the verified assessment and navigation flow. Keep See My Results disabled.
-2. Wait for explicit user direction before implementing or exposing results or any other features.
+1. Stop after the verified final V2 flow and working results. No further changes without a new request.
+2. Optional later enhancement: collect student feedback on the clarity of result explanations.

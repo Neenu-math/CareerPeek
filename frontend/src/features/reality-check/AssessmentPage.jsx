@@ -54,7 +54,7 @@ export default function AssessmentPage({ career, illustration }) {
   ];
 
   return <main className={`rc-page rc-accent-${profile.accent}`}>
-    <Link className="back-link" to={`/careers/${career.slug}`} data-testid="reality-check-back-to-career"><ArrowLeft size={16} /> Back to {career.name}</Link>
+    <Link className="back-link" to={`/careers/${career.slug}/roadmap`} data-testid="reality-check-back-to-career"><ArrowLeft size={16} /> Back to {career.name}</Link>
     <AssessmentProgress step={step} />
     <header className="rc-experience-heading">
       <div><div className="rc-career-label" data-testid="assessment-selected-career">REALITY CHECK: {configuration.label.toUpperCase()}</div><h1 id="rc-experience-title" tabIndex={-1} data-testid="assessment-experience-title">{interaction.title}</h1><p data-testid="assessment-experience-prompt">{interaction.prompt}</p></div>
