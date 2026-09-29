@@ -139,3 +139,32 @@
   .rc-signal-grid, .rc-recommendations, .rc-reality-columns { grid-template-columns: minmax(0, 1fr); }.rc-signal { padding: 24px; }.rc-signal-icon { font-size: 31px; }.rc-career-meaning, .rc-discovery { padding-top: 55px; }.rc-career-meaning > p, .rc-discovery > p { font-size: 14px; }.rc-reality-columns { gap: 24px; }.rc-recommendation img { height: 155px; }.rc-result-connect { display: block; margin-top: 55px; padding-top: 35px; }.rc-result-connect > a { margin-top: 26px; width: 100%; font-size: 13px; padding-left: 16px; padding-right: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .rc-page *, .rc-entry * { animation: none !important; transition: none !important; } }
+
+/* Results-only closing section; assessment and career-page styles stay intact. */
+.rc-results .rc-career-meaning { padding-top: 56px; }
+.rc-results .rc-career-meaning > h2 { margin: 0 0 12px; }
+.rc-results .rc-career-meaning > p { max-width: none; margin: 0; font-size: 16px; line-height: 1.65; }
+.rc-results .rc-result-connect {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+  align-items: center;
+  gap: 40px;
+  margin-top: 28px;
+  padding: 52px 40px;
+  border: 0;
+  border-radius: 22px;
+  background: #e6f2fa;
+}
+.rc-results .rc-result-connect-copy { min-width: 0; }
+.rc-results .rc-result-connect h2 { margin: 18px 0; font-size: 34px; line-height: 1.08; font-weight: 700; letter-spacing: 0; }
+.rc-results .rc-result-connect p { color: #475b74; line-height: 1.65; }
+.rc-results .rc-result-actions { min-width: 0; margin: 0; align-items: stretch; gap: 16px; }
+.rc-results .rc-result-actions .primary-button { width: 100%; min-height: 64px; padding: 18px 20px; font-size: 14px; text-align: center; }
+.rc-results .rc-result-actions .primary-button svg { flex-shrink: 0; }
+.rc-results .rc-result-actions .text-button { align-self: flex-start; }
+@media (max-width: 800px) {
+  .rc-results .rc-career-meaning { padding-top: 40px; }
+  .rc-results .rc-career-meaning > p { font-size: 14px; }
+  .rc-results .rc-result-connect { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 34px 24px; margin-top: 24px; }
+  .rc-results .rc-result-connect h2 { font-size: 28px; line-height: 1.12; }
+}

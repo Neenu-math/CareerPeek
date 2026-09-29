@@ -83,3 +83,15 @@ android-sdk/
 
 # overlay black-box crash/user-report dumps — session data, never history
 **/.emergent/recordings/
+# Automated test files
+tests/
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Test artifacts
+test_reports/
+
+# Emergent generated files
+.emergent/

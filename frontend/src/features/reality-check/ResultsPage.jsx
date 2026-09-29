@@ -5,27 +5,25 @@ import { careerContent } from "@/careerContent";
 import { traitDefinitions } from "./config/traits";
 import { careerAssessmentProfiles } from "./config/profiles";
 import { resultCopy, signalPhrases } from "./config/resultCopy";
-import { readSession } from "./session";
+import { readSession, useResultsSession } from "./session";
 import { buildResult } from "./engine";
 import "./reality-check.css";
 
-const RealityNotes = ({ title, items, testId }) => <section className={`rc-reality-notes ${testId}`} data-testid={testId}>
-  <h3 data-testid={`${testId}-heading`}>{title}</h3>
-  <ul>{items.map((item, index) => <li key={item.text} data-testid={`${testId}-item-${index}`}><p>{item.text}</p></li>)}</ul>
-</section>;
-
 export default function ResultsPage({ career, illustration, artFor }) {
+  useResultsSession(career.slug);
   const session = readSession(career.slug);
-  const assessmentPath = `/careers/${career.slug}/reality-check`;
-  if (!session.completed) return <Navigate to={assessmentPath} replace />;
+  const careerPath = `/careers/${career.slug}`;
+  if (!session.completed) return <Navigate to={careerPath} replace />;
   const result = buildResult(session.answers, career.slug, careersDb.map(item => item.slug));
   const profile = careerAssessmentProfiles[career.slug];
-  const overlappingNames = new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(result.overlap.map(id => signalPhrases[id]));
   const careerLabel = resultCopy.careerLabels[career.slug];
-  const considerations = career.beforeYouChoose.whatYouShouldKnow.map((note, index) => ({ text: note.description, icon: profile.considerations[index].icon }));
+  const connectionCopy = resultCopy.careerConnections[career.slug];
+  const connectionSentence = result.overlap.length
+    ? connectionCopy.aligned.replace("{signal}", signalPhrases[result.overlap[0]])
+    : connectionCopy.exploring;
 
   return <main className={`rc-page rc-results rc-accent-${profile.accent}`}>
-    <Link to={assessmentPath} className="back-link" data-testid="results-back-to-assessment"><ArrowLeft size={16} /> Revisit my choices</Link>
+    <Link to={careerPath} className="back-link" data-testid="results-back-to-career"><ArrowLeft size={16} /> Back to {career.name}</Link>
     <header className="rc-result-heading">
       <div><span className="eyebrow" data-testid="results-eyebrow"><span className="eyebrow-dot" /> YOUR REALITY CHECK</span><h1 data-testid="results-title">{resultCopy.title}</h1><p data-testid="results-intro">{resultCopy.intro}</p></div>
       <img src={illustration} alt={`${career.name} illustration`} data-testid="results-career-illustration" />
@@ -38,15 +36,6 @@ export default function ResultsPage({ career, illustration, artFor }) {
       })}</div>
       <p className="rc-result-disclaimer" data-testid="results-disclaimer">{resultCopy.disclaimer}</p>
     </section>
-    <section className="rc-career-meaning" aria-labelledby="rc-career-meaning-title" data-testid="results-career-interpretation">
-      <span className="eyebrow" data-testid="results-career-name">{career.name.toUpperCase()}</span>
-      <h2 id="rc-career-meaning-title" data-testid="results-career-meaning-title">How this connects to {careerLabel}</h2>
-      <p data-testid="results-career-meaning-copy">{result.overlap.length ? `Your choices around ${overlappingNames} overlap with several parts of ${careerLabel.toLowerCase()}. These are connections to explore, not a verdict about your future.` : resultCopy.noOverlap}</p>
-      <div className="rc-reality-columns">
-        {result.natural.length ? <RealityNotes title={resultCopy.naturalTitle} items={result.natural} testId="results-natural" /> : <section className="rc-reality-notes results-natural" data-testid="results-natural"><h3 data-testid="results-natural-heading">{resultCopy.naturalTitle}</h3><p data-testid="results-natural-empty">A first-hand conversation may help you discover aspects of this work that these six experiences haven't captured.</p></section>}
-        <RealityNotes title={resultCopy.considerTitle} items={considerations} testId="results-considerations" />
-      </div>
-    </section>
     <section className="rc-discovery" aria-labelledby="rc-discovery-heading" data-testid="results-career-discovery">
       <span className="eyebrow" data-testid="results-discovery-eyebrow">CAREERS WORTH EXPLORING</span>
       <h2 id="rc-discovery-heading" data-testid="results-discovery-heading">{resultCopy.discoveryTitle}</h2><p data-testid="results-discovery-description">{resultCopy.discoveryIntro}</p>
@@ -55,9 +44,20 @@ export default function ResultsPage({ career, illustration, artFor }) {
         return <article className="rc-recommendation" key={slug} data-testid={`career-recommendation-${slug}`}><img src={artFor(slug)} alt={`${related.name} illustration`} data-testid={`recommended-career-image-${slug}`} /><h3 data-testid={`recommended-career-name-${slug}`}>{related.name}</h3><p data-testid={`recommended-career-reason-${slug}`}>{shared.length ? shared.map(id => signalPhrases[id]).join(" + ") : "Another perspective on work to explore"}</p><Link to={`/careers/${slug}`} className="text-button" data-testid={`recommended-career-explore-${slug}`}>Explore Career <ArrowRight size={16} /></Link></article>;
       })}</div>
     </section>
-    <section className="rc-result-connect" data-testid="results-meet-professionals">
-      <div><h2 data-testid="results-connect-heading">{resultCopy.connectTitle}</h2><p data-testid="results-connect-description">{resultCopy.connectIntro}</p></div>
-      <a href={`https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(career.name)}`} target="_blank" rel="noreferrer" className="primary-button" data-testid="results-linkedin-button">Find Professionals on LinkedIn <ExternalLink size={17} /></a>
+    <section className="rc-career-meaning" aria-labelledby="rc-career-meaning-title" data-testid="results-career-interpretation">
+      <h2 id="rc-career-meaning-title" data-testid="results-career-meaning-title">How this connects to {careerLabel}</h2>
+      <p data-testid="results-career-meaning-copy">{connectionSentence}</p>
+    </section>
+    <section className="rc-result-connect connect-section" data-testid="results-meet-professionals" aria-labelledby="results-connect-heading">
+      <div className="rc-result-connect-copy">
+        <span className="eyebrow" data-testid="results-connect-eyebrow"><span className="eyebrow-dot" /> KEEP EXPLORING</span>
+        <h2 id="results-connect-heading" data-testid="results-connect-heading">{resultCopy.connectTitle}</h2>
+        <p data-testid="results-connect-description">{resultCopy.connectIntro}</p>
+      </div>
+      <div className="connect-actions rc-result-actions">
+        <a href={`https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(career.name)}`} target="_blank" rel="noreferrer" className="primary-button" data-testid="results-linkedin-button">Find professionals on LinkedIn <ExternalLink size={17} /></a>
+        <Link to="/careers" className="text-button" data-testid="results-explore-another-career">Explore another career <ArrowRight size={16} /></Link>
+      </div>
     </section>
   </main>;
 }
