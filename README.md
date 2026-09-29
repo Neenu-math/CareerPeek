@@ -82,7 +82,7 @@ A career-specific interactive experience built around:
 
 The experience is designed so students can participate without needing prior knowledge of the career.
 
-### 👩‍💼 Professional Exploration
+###  Professional Exploration
 
 After completing the Reality Check, students can explore real professionals through LinkedIn to gain additional first-hand perspectives.
 
