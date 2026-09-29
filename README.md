@@ -8,7 +8,7 @@ Instead of telling students which career to choose, CareerPeek helps them unders
 
 ---
 
-## 🎯 Problem
+##  Problem
 
 Students have access to plenty of career information, but often lack real-world context about:
 
@@ -22,7 +22,7 @@ This can make career decisions feel uncertain and difficult.
 
 ---
 
-## 🔍 User Research
+##  User Research
 
 To understand the problem, I conducted:
 
@@ -39,7 +39,7 @@ To understand the problem, I conducted:
 
 ---
 
-## 💡 Product Approach
+##  Product Approach
 
 > **Don't tell students what career to choose. Help them understand the choices.**
 
@@ -47,7 +47,7 @@ CareerPeek focuses on career exploration rather than career prediction or recomm
 
 ---
 
-## 🔄 V1 → V2
+##  V1 → V2
 
 | V1 | V2 |
 |---|---|
@@ -57,7 +57,7 @@ CareerPeek focuses on career exploration rather than career prediction or recomm
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 ### Career Exploration
 Explore a career through:
@@ -69,7 +69,7 @@ Explore a career through:
 - Salary information
 - Reality Check
 
-### 🧩 Reality Check
+###  Reality Check
 
 A career-specific interactive experience built around:
 
@@ -88,7 +88,7 @@ After completing the Reality Check, students can explore real professionals thro
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - React
 - JavaScript
@@ -98,19 +98,19 @@ After completing the Reality Check, students can explore real professionals thro
 
 ---
 
-## 🚀 Live Demo
+##  Live Demo
 
 [**Try CareerPeek →**](https://explore-careerpeek.emergent.host/)
 
 ---
 
-## 📋 Product Documentation
+##  Product Documentation
 
 [**View the Product Requirements Document →**](https://app.notion.com/p/areerPeek-PRD-3eabfc2f642b80a3b266c9992321ab01?source=copy_link)
 
 ---
 
-## 👩‍💻 About the Project
+##  About the Project
 
 CareerPeek was built as a Product Management portfolio project to practice the complete product development process:
 
